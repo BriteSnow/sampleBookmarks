@@ -45,7 +45,7 @@
       <li data-entity-id="${item.id}">
         <a href="${item.url!'no url'}">${item.title!'no title'}</a>
         <p class="muted">${item.note}</p>
-        <i class="icon-remove-sign"></i>
+        <i class="icon-remove-sign do-delete"></i>
       </li>
     [/#list]
   </ul>
@@ -53,7 +53,7 @@
   <script type="text/javascript">
     // Code that delete a bookmark with clicking on the delete icons
     $(function(){
-      $("#itemList1").on("click","li",function(event){
+      $("#itemList1").on("click","i.do-delete",function(event){
         var $li = $(event.target).closest("li");
         var itemId = $li.attr("data-entity-id");
         $.ajax("api/user-delete-item.do",{
