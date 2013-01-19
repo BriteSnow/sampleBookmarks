@@ -3,9 +3,9 @@ package com.example.samplebookmarks.web;
 
 import javax.inject.Inject;
 
-import com.britesnow.snow.web.handler.annotation.WebActionHandler;
 import com.britesnow.snow.web.param.annotation.WebParam;
 import com.britesnow.snow.web.param.annotation.WebUser;
+import com.britesnow.snow.web.rest.annotation.WebPost;
 import com.example.samplebookmarks.dao.ItemDao;
 import com.example.samplebookmarks.entity.Item;
 import com.example.samplebookmarks.entity.User;
@@ -17,7 +17,7 @@ public class ItemWebHandlers {
     @Inject
     public ItemDao itemDao;
 
-    @WebActionHandler(name = "api/user-create-item")
+    @WebPost("/api/user-create-item")
     public WebResponse apiUserCreateItem(@WebUser User user, @WebParam("title") String title, @WebParam("url") String url,
                             @WebParam("note") String note) {
         Item item = null;
@@ -34,7 +34,7 @@ public class ItemWebHandlers {
         return WebResponse.fail("Not logged in, no create.");
     }
     
-    @WebActionHandler(name= "api/user-delete-item")
+    @WebPost("/api/user-delete-item")
     public WebResponse apiUserDeleteItem(@WebUser User user, @WebParam("id") Long id){
         if (user != null){
             try{

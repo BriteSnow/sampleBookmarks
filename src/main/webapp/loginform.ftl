@@ -1,5 +1,5 @@
 <section id="loginsection" class="content">
-<form id="login-form" class="form-horizontal" action="${_r.contextPath}/api/user-login.do" method="post">
+<form id="login-form" class="form-horizontal" action="${_r.contextPath}/api/user-login" method="post">
   <!-- If the user has not be set, then, we display the login form -->
   <h3>Login</h3>
   

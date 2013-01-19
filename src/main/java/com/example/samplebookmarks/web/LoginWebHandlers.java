@@ -6,8 +6,8 @@ import javax.inject.Inject;
 import javax.inject.Singleton;
 
 import com.britesnow.snow.web.RequestContext;
-import com.britesnow.snow.web.handler.annotation.WebActionHandler;
 import com.britesnow.snow.web.param.annotation.WebParam;
+import com.britesnow.snow.web.rest.annotation.WebPost;
 import com.example.samplebookmarks.dao.UserDao;
 import com.example.samplebookmarks.entity.User;
 
@@ -23,7 +23,7 @@ public class LoginWebHandlers {
      * 
      * @return
      */
-    @WebActionHandler(name="api/user-login")
+    @WebPost("/api/user-login")
     public WebResponse login(@WebParam("userName")String userName, @WebParam("pwd")String pwd, RequestContext rc){
         User user = userDao.getUserByUserName(userName);
         
@@ -38,7 +38,7 @@ public class LoginWebHandlers {
 
     }
     
-    @WebActionHandler(name="api/user-logoff")
+    @WebPost("/api/user-logoff")
     public void logoff(RequestContext rc){
         rc.getReq().getSession().removeAttribute("user");
     }

@@ -1,7 +1,7 @@
 [@includeTemplate name="navbar.ftl" /]
 <section class="content">
   <h4>Add Bookmark</h4>
-  <form  id="from-user-create-item" action="${_r.contextPath}/api/user-create-item.do" method="post">
+  <form  id="from-user-create-item" action="${_r.contextPath}/api/user-create-item" method="post">
       <div class="control-group">
         <div class="controls  row-fluid">
           <input class="span6" type="text" name="title" placeholder="title"> <input class="span6" style="margin-left:1.3%" type="text" name="url" placeholder="url">
@@ -56,7 +56,7 @@
       $("#itemList1").on("click","i.do-delete",function(event){
         var $li = $(event.target).closest("li");
         var itemId = $li.attr("data-entity-id");
-        $.ajax("api/user-delete-item.do",{
+        $.ajax("api/user-delete-item",{
                 type: "POST",
                 data: {id: itemId},
                 dataType: "json"

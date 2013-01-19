@@ -4,7 +4,7 @@
 $(function(){
 	$(document).on("click","a.logoff",function(e){
 		var $a = $(this);
-		$.ajax("api/user-logoff.do",{type:"POST"}).done(function(){
+		$.ajax("api/user-logoff",{type:"POST"}).done(function(){
 			window.location = window.location.href;
 		});
 	});
