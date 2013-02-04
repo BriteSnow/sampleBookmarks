@@ -9,10 +9,13 @@ public class AppAuthRequest implements AuthRequest<User> {
 
     @Override
     public AuthToken<User> authRequest(RequestContext rc) {
-
         // Note for this sample app, we store the user in the session, 
         // but for production application, use stateless authentication mechanism for 
-        // better sclability. 
+        // better sclability.
+        
+        // RequestContext is a convenient Snow wrapper on top of HttpServletRequest, 
+        //  and HttpServletResponse
+        // rc.getReq() return the HttpServletRequest 
         User user = (User) rc.getReq().getSession().getAttribute("user");
         
         if (user != null){

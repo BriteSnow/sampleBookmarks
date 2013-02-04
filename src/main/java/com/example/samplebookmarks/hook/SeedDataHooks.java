@@ -54,7 +54,7 @@ public class SeedDataHooks {
      * @param inView
      * @param daoHelper
      */
-    @WebApplicationHook(phase = AppPhase.INIT,on=On.BEFORE)
+    @WebApplicationHook(phase = AppPhase.SHUTDOWN,on=On.BEFORE)
     public void shutdownDb(HibernateSessionInViewHandler inView, HibernateDaoHelper daoHelper){
         try {
             inView.openSessionInView();

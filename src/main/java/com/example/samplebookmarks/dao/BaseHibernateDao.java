@@ -14,10 +14,11 @@ import java.util.List;
 import java.util.Map;
 
 @SuppressWarnings({"rawtypes", "unchecked"})
-public class BaseHibernateDao<E> implements IDao<E> {
+public abstract class BaseHibernateDao<E> implements IDao<E> {
 
     protected Class<E> entityClass;
 
+    @Inject
     protected HibernateDaoHelper daoHelper;
 
     public BaseHibernateDao() {
@@ -29,11 +30,6 @@ public class BaseHibernateDao<E> implements IDao<E> {
                     + " must have a generic binding for interface "
                     + BaseHibernateDao.class.getName());
         }
-    }
-
-    @Inject
-    public void injectDaoHelper(HibernateDaoHelper daoHelper) {
-        this.daoHelper = daoHelper;
     }
 
     // --------- IDao Interface --------- //

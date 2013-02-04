@@ -16,8 +16,7 @@
     
   </head>
 
-  <body>
-    
+  <body>aaa
     [#if _r.user??]
       <!-- Note: "includeFrameContent" is a Snow specific freemarker directive that allow to include the targeted template
         for this URL respecting the "_frame.ftl" hierarchy  -->
@@ -25,5 +24,6 @@
     [#else]
       [@includeTemplate name="loginform.ftl"/] 
     [/#if]
+    <footer>${version}</footer>
   </body>
 </html>

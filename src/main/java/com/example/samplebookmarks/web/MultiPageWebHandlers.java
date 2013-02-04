@@ -19,6 +19,11 @@ public class MultiPageWebHandlers {
     @Inject
     private ItemDao itemDao;
     
+    @WebModelHandler(startsWith="/")
+    public void allPages(@WebModel Map m){
+        m.put("version", "1.0.11");
+    }
+    
     /**
      * 
      * @param m (@WebModel) will be injected by Snow, and it is the WebModel for the page 

@@ -56,9 +56,8 @@
       $("#itemList1").on("click","i.do-delete",function(event){
         var $li = $(event.target).closest("li");
         var itemId = $li.attr("data-entity-id");
-        $.ajax("api/user-delete-item",{
-                type: "POST",
-                data: {id: itemId},
+        $.ajax("api/user-item-" + itemId,{
+                type: "DELETE",
                 dataType: "json"
               }
         ).done(function(data){

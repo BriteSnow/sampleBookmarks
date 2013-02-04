@@ -22,8 +22,8 @@ import com.metapossum.utils.scanner.reflect.ClassesInPackageScanner;
  * TODO: add/remove bindings to fit your application's need
  * 
  */
-public class SampleBookmarksConfig extends AbstractModule {
-    private static Logger log = LoggerFactory.getLogger(SampleBookmarksConfig.class);
+public class AppConfig extends AbstractModule {
+    private static Logger log = LoggerFactory.getLogger(AppConfig.class);
     
     @Override
     protected void configure() {
@@ -37,6 +37,12 @@ public class SampleBookmarksConfig extends AbstractModule {
     @Singleton
     @EntityClasses
     public Class[] provideEntityClasses() {
+        // The simplest implementation, would be to harcode like
+        // return new Class[]{com.example.samplebookmarks.entity.User.class,
+        //                    com.example.samplebookmarks.entity.Item.class};
+        
+        // However, with few more line of code, we can have a maintenance free implementation 
+        // by scanning the application entity.* java package.
         Set<Class<?>> entitySet;
         try {
             entitySet = new ClassesInPackageScanner().findAnnotatedClasses(BaseEntity.class.getPackage().getName(), javax.persistence.Entity.class);
