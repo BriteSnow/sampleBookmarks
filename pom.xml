@@ -8,7 +8,6 @@
   <name>sampleBookmarks</name>
   <url>http://maven.apache.org</url>
   
-<!-- test -->  
   <build>
     <finalName>sampleBookmarks</finalName>
     <plugins>
