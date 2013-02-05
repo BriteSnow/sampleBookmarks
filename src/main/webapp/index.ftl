@@ -5,12 +5,15 @@
   <p>Just a very simple prototype of a very basic bookmark application, showing the main concepts of Snow, for login, 
     authentication, REST API in Java.</p>
     
-  <p>The source of this application is <a href="https://github.com/BriteSnow/sampleBookmarks">on GitHub</a></p>
+  <p>The source of this application is <a target="gb" href="https://github.com/BriteSnow/sampleBookmarks">on GitHub</a></p>
 
+  <div style="text-align:center">Sample <a target="gb" href="https://github.com/BriteSnow/sampleBookmarks/blob/master/src/main/java/com/example/samplebookmarks/web/ItemWebHandlers.java#L53">@WebGet("/api/user-items")</a> 
+                                 JSON API: <a href="${_r.contextPath}/api/user-items">/api/user-items</a></div>
   <br style="height:40px" />
   <div class="row-fluid">
     <div class="span2"></div>
     <div class="span8">
+      
       <center>
       <a class="btn btn-primary btn-large" href="bookmarks">Go To Application <br /><small>(page refresh version)</small></a>
       </center>
