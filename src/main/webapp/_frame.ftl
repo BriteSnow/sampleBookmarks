@@ -16,7 +16,7 @@
     
   </head>
 
-  <body>aaa
+  <body>
     [#if _r.user??]
       <!-- Note: "includeFrameContent" is a Snow specific freemarker directive that allow to include the targeted template
         for this URL respecting the "_frame.ftl" hierarchy  -->
