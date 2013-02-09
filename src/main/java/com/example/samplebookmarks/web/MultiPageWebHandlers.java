@@ -21,7 +21,7 @@ public class MultiPageWebHandlers {
     
     @WebModelHandler(startsWith="/")
     public void allPages(@WebModel Map m){
-        m.put("version", "1.0.11");
+        m.put("version", "1.1.0");
     }
     
     /**
