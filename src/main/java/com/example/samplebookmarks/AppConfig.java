@@ -1,11 +1,9 @@
 package com.example.samplebookmarks;
 
-import java.io.IOException;
-import java.util.Set;
-
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
+import com.britesnow.snow.util.PackageScanner;
 import com.britesnow.snow.web.auth.AuthRequest;
 import com.britesnow.snow.web.binding.EntityClasses;
 import com.example.samplebookmarks.entity.BaseEntity;
@@ -13,7 +11,6 @@ import com.example.samplebookmarks.web.AppAuthRequest;
 import com.google.inject.AbstractModule;
 import com.google.inject.Provides;
 import com.google.inject.Singleton;
-import com.metapossum.utils.scanner.reflect.ClassesInPackageScanner;
 
 /**
  * TODO: Rename the package and the class name to fit your application naming convention and 
@@ -37,19 +34,15 @@ public class AppConfig extends AbstractModule {
     @Singleton
     @EntityClasses
     public Class[] provideEntityClasses() {
-        // The simplest implementation, would be to harcode like
+        // The simplest implementation, would be to hardcode like
         // return new Class[]{com.example.samplebookmarks.entity.User.class,
         //                    com.example.samplebookmarks.entity.Item.class};
         
         // However, with few more line of code, we can have a maintenance free implementation 
         // by scanning the application entity.* java package.
-        Set<Class<?>> entitySet;
         try {
-            entitySet = new ClassesInPackageScanner().findAnnotatedClasses(BaseEntity.class.getPackage().getName(), javax.persistence.Entity.class);
-            Class[] entityClasses = new Class[entitySet.size()];
-            entitySet.toArray(entityClasses);
-            return entityClasses;
-        } catch (IOException e) {
+            return new PackageScanner(BaseEntity.class.getPackage().getName()).findAnnotatedClasses(javax.persistence.Entity.class);
+        } catch (Throwable e) {
             log.error(e.getMessage(), e);
             throw new RuntimeException("Cannot get all the enity class: " + e.getMessage());
         }

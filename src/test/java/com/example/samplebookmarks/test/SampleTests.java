@@ -1,10 +1,11 @@
 package com.example.samplebookmarks.test;
 
-import java.sql.ResultSet;
+import java.sql.Connection;
 import java.sql.SQLException;
 import java.util.List;
 import java.util.Map;
 
+import org.hibernate.jdbc.Work;
 import org.junit.BeforeClass;
 import org.junit.Test;
 
@@ -61,36 +62,6 @@ public class SampleTests extends SnowTestSupport {
 
     }
 
-    @Test
-    public void quickCountEntities() {
-        HibernateSessionInViewHandler inView = appInjector.getInstance(HibernateSessionInViewHandler.class);
-        inView.openSessionInView();
-        
-        HibernateDaoHelper daoHelper = appInjector.getInstance(HibernateDaoHelper.class);
-
-        try {
-            ResultSet rs = daoHelper.executeSql("select * from User");
-            int c = 0;
-            while (rs.next()) {
-                c++;
-            }
-            System.out.println("SampleTests.quickCountEntities: user count: " + c);
-
-            rs = daoHelper.executeSql("select * from Item");
-            c = 0;
-            while (rs.next()) {
-                c++;
-            }
-            System.out.println("SampleTests.quickCountEntities: item count: " + c);
-
-        } catch (SQLException e) {
-            e.printStackTrace();
-        } finally {
-            inView.closeSessionInView();
-        }
-
-    }
-
     //@AfterClass
     public static void after() {
 
@@ -98,7 +69,11 @@ public class SampleTests extends SnowTestSupport {
             HibernateSessionInViewHandler inView = appInjector.getInstance(HibernateSessionInViewHandler.class);
             inView.openSessionInView();
             HibernateDaoHelper daoHelper = appInjector.getInstance(HibernateDaoHelper.class);
-            daoHelper.getConnection().prepareStatement("shutdown compact").execute();
+            daoHelper.getSession().doWork(new Work() {
+                public void execute(Connection con) throws SQLException {
+                    con.prepareStatement("shutdown compact").execute();
+                }
+            });
             inView.closeSessionInView();
         } catch (Throwable e) {
             // TODO Auto-generated catch block

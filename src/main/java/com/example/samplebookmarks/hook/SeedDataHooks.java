@@ -1,5 +1,10 @@
 package com.example.samplebookmarks.hook;
 
+import java.sql.Connection;
+import java.sql.SQLException;
+
+import org.hibernate.jdbc.Work;
+
 import com.britesnow.snow.web.db.hibernate.HibernateDaoHelper;
 import com.britesnow.snow.web.db.hibernate.HibernateSessionInViewHandler;
 import com.britesnow.snow.web.hook.AppPhase;
@@ -58,7 +63,11 @@ public class SeedDataHooks {
     public void shutdownDb(HibernateSessionInViewHandler inView, HibernateDaoHelper daoHelper){
         try {
             inView.openSessionInView();
-            daoHelper.getConnection().prepareStatement("shutdown compact").execute();
+            daoHelper.getSession().doWork(new Work() {
+                public void execute(Connection con) throws SQLException {
+                    con.prepareStatement("shutdown compact").execute();
+                }
+            });
             inView.closeSessionInView();
         } catch (Throwable e) {
             // TODO Auto-generated catch block
