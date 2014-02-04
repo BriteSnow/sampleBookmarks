@@ -11,3 +11,11 @@ build.xml
 target/
 # prevent tmp/ should be for dev db and stuff
 tmp/
+
+# Ignore Intellij files
+.idea/
+*.iml
+
+# Ignore Sublime files
+*.sublime-project
+*.sublime-workspace

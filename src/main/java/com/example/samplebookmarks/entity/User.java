@@ -6,7 +6,7 @@ import javax.persistence.Transient;
 @Entity
 public class User extends BaseEntity {
 
-    private String userName;
+    private String username;
     private String password;
     private String firstName;
     private String lastName;
@@ -15,7 +15,7 @@ public class User extends BaseEntity {
     public User(){};
 
     public User(String userName, String password, String firstName, String lastName){
-        setUserName(userName);
+        setUsername(userName);
         setPassword(password);
         setFirstName(firstName);
         setLastName(lastName);
@@ -31,18 +31,19 @@ public class User extends BaseEntity {
             sb.append(lastName);
         }
         if (firstName == null && lastName == null){
-            sb.append(userName);
+            sb.append(username);
         }
         return sb.toString();
     }
     
     // --------- Persistent Properties --------- //
-    public String getUserName() {
-        return userName;
+    public String getUsername() {
+        return username;
     }
-    public void setUserName(String userName) {
-        this.userName = userName;
+    public void setUsername(String username) {
+        this.username = username;
     }
+    
     public String getPassword() {
         return password;
     }
