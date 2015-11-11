@@ -1,6 +1,6 @@
 <div id="pageNav" class="navbar navbar-inverse navbar-static-top">
   <div class="navbar-inner">
-    <a class="brand" href="${_r.contextPath}">sampleBookmarks</a>
+    <a class="brand" href="${_r.contextPath}/">sampleBookmarks</a>
     <ul class="nav">
       <li class="[#if piIs("/bookmarks")]active[/#if]"><a href="bookmarks">My Bookmarks</a></li>
       [#--
