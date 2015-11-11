@@ -12,8 +12,8 @@ target/
 # prevent tmp/ should be for dev db and stuff
 tmp/
 
-# Ignore .py files as they are dev-ops stuff
-.py
+# Ignore local dev/ folder
+dev/
 
 # Ignore Intellij files
 .idea/
